@@ -50,7 +50,7 @@ public class AnnotationsManager : MonoBehaviour
         m_gestureRecognizer = new GestureRecognizer();
         m_gestureRecognizer.Tapped += (args) =>
         {
-            Debug.Log("[AnnotationsManager::Start] Gesture tapped detected");
+            //Debug.Log("[AnnotationsManager::Start] Gesture tapped detected");
             m_gestureToManage = true;
         };
         m_gestureRecognizer.StartCapturingGestures();
@@ -77,7 +77,7 @@ public class AnnotationsManager : MonoBehaviour
             
             if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
             {
-                m_sDebugText = "[TestRaycast::Update] What has been hit: " + hit.collider.gameObject.tag;
+                //m_sDebugText = "[TestRaycast::Update] What has been hit: " + hit.collider.gameObject.tag;
                 if (hit.collider.gameObject.tag == "Annotations")
                 {
                     for ( int i = 0; i < m_annotations.Count; i ++)
@@ -86,7 +86,7 @@ public class AnnotationsManager : MonoBehaviour
                         {
                             Destroy(m_annotations[i]);
                             m_annotations.RemoveAt(i);
-                            m_sDebugText = "[TestRaycast::Update] Object removed!";
+                            //m_sDebugText = "[TestRaycast::Update] Object removed!";
                         }
                     }
                 }
@@ -118,8 +118,8 @@ public class AnnotationsManager : MonoBehaviour
         }
         else if (m_gestureToManage)
         {
-            Debug.Log("[AnnotationsManager::Update] Gesture detected");
-            m_sDebugText = "[TestRaycast::Update] Handling gesture";
+            //Debug.Log("[AnnotationsManager::Update] Gesture detected");
+            //m_sDebugText = "[TestRaycast::Update] Handling gesture";
             m_gestureToManage = false;
             var headPosition = Camera.main.transform.position;
             var gazeDirection = Camera.main.transform.forward;
@@ -133,7 +133,7 @@ public class AnnotationsManager : MonoBehaviour
                     {
                         Destroy(m_annotations[i]);
                         m_annotations.RemoveAt(i);
-                        m_sDebugText = "[TestRaycast::Update] Object removed by user!";
+                        //m_sDebugText = "[TestRaycast::Update] Object removed by user!";
                     }
                 }
             }
@@ -147,6 +147,11 @@ public class AnnotationsManager : MonoBehaviour
             m_debugCube.SetActive(false);
             m_lr.gameObject.SetActive(false);
             m_tmDebug.gameObject.SetActive(false);
+        }
+        else if (m_iDebugStatus == 2)
+        {
+            m_tmDebug.gameObject.SetActive(true);
+            m_tmDebug.text = m_sDebugText;
         }
         else if (m_iDebugStatus == 3)
         {
@@ -163,7 +168,7 @@ public class AnnotationsManager : MonoBehaviour
                 m_lr.SetColors(Color.green, Color.green);
                 m_debugCube.transform.SetPositionAndRotation(m_ray.origin, m_debugCube.transform.rotation);
 
-                m_sDebugText = "Camera resolution: " + Camera.main.pixelWidth + " " + Camera.main.pixelHeight;
+                //m_sDebugText = "Camera resolution: " + Camera.main.pixelWidth + " " + Camera.main.pixelHeight;
             }
 
             m_tmDebug.text = m_sDebugText;
@@ -203,7 +208,12 @@ public class AnnotationsManager : MonoBehaviour
     public void changeAnnotation(int newAnnotation)
     {
         m_iAnnotationSelected = newAnnotation;
-        m_sDebugText = "[AnnotationsManager::changeAnnotation] Annotation type changed: " + m_iAnnotationSelected;
+        //m_sDebugText = "[AnnotationsManager::changeAnnotation] Annotation type changed: " + m_iAnnotationSelected;
+    }
+
+    public void setDebugText(string text)
+    {
+        m_sDebugText = text;
     }
 
     public void enableGuidanceArrow(bool enable)
@@ -217,9 +227,20 @@ public class AnnotationsManager : MonoBehaviour
         {
             m_iDebugStatus = 0;
         }
+        else if (level == 2)
+        {
+            m_iDebugStatus = 2;
+        }
         else if (level == 3)
         {
             m_iDebugStatus = 3;
         }
+        Debug.Log("processDebug::level:" + m_iDebugStatus);
+        setDebugText("Debug level changed");
+    }
+
+    public int getProcessDebug()
+    {
+        return m_iDebugStatus;
     }
 }

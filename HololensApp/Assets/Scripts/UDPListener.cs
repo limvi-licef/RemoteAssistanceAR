@@ -78,7 +78,7 @@ public class UDPListener : MonoBehaviour
         {
             m_tmUDPStatus.gameObject.SetActive(false);
         }
-        else if (m_idebugStatus == 3)
+        else if (m_idebugStatus == 3 || m_idebugStatus == 2)
         {
             m_tmUDPStatus.gameObject.SetActive(true);
         }

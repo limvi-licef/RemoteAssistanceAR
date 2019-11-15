@@ -4,6 +4,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using System.Diagnostics;
 
 namespace Viewer
 {
@@ -66,6 +67,11 @@ namespace Viewer
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
+            }
+
+            if (e.Arguments.Length == 1)
+            {
+                Debug.WriteLine("[Playback::start] Waiting for a connection...");
             }
         }
 

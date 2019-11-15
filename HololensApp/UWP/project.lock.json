@@ -16206,7 +16206,6 @@
       "type": "package",
       "path": "microsoft.applicationinsights/1.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/net40/Microsoft.ApplicationInsights.XML",
         "lib/net40/Microsoft.ApplicationInsights.dll",
@@ -16225,7 +16224,6 @@
       "type": "package",
       "path": "microsoft.applicationinsights.persistencechannel/1.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.XML",
         "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.dll",
@@ -16242,7 +16240,6 @@
       "type": "package",
       "path": "microsoft.applicationinsights.windowsapps/1.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.XML",
         "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll",
@@ -16259,7 +16256,6 @@
       "type": "package",
       "path": "microsoft.csharp/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -16318,7 +16314,6 @@
       "type": "package",
       "path": "microsoft.net.native.compiler/1.7.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "build/Microsoft.Net.Native.Compiler.props",
         "build/Microsoft.Net.Native.Compiler.targets",
@@ -17218,7 +17213,6 @@
       "type": "package",
       "path": "microsoft.net.native.sharedlibrary-arm/1.7.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "build/Microsoft.Net.Native.SharedLibrary-arm.props",
         "build/Microsoft.Net.Native.SharedLibrary-arm.targets",
@@ -17618,7 +17612,6 @@
       "type": "package",
       "path": "microsoft.net.native.sharedlibrary-x64/1.7.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "build/Microsoft.Net.Native.SharedLibrary-x64.props",
         "build/Microsoft.Net.Native.SharedLibrary-x64.targets",
@@ -18018,7 +18011,6 @@
       "type": "package",
       "path": "microsoft.net.native.sharedlibrary-x86/1.7.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "build/Microsoft.Net.Native.SharedLibrary-x86.props",
         "build/Microsoft.Net.Native.SharedLibrary-x86.targets",
@@ -18418,7 +18410,6 @@
       "type": "package",
       "path": "microsoft.netcore/5.0.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18431,7 +18422,6 @@
       "type": "package",
       "path": "microsoft.netcore.jit/1.0.3",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18445,7 +18435,6 @@
       "type": "package",
       "path": "microsoft.netcore.platforms/1.0.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18460,7 +18449,6 @@
       "type": "package",
       "path": "microsoft.netcore.portable.compatibility/1.0.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18544,7 +18532,6 @@
       "type": "package",
       "path": "microsoft.netcore.runtime.coreclr/1.0.3",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18558,7 +18545,6 @@
       "type": "package",
       "path": "microsoft.netcore.targets/1.0.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18573,7 +18559,6 @@
       "type": "package",
       "path": "microsoft.netcore.universalwindowsplatform/5.4.4",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -18586,7 +18571,6 @@
       "type": "package",
       "path": "microsoft.netcore.windows.apisets/1.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18600,7 +18584,6 @@
       "type": "package",
       "path": "microsoft.visualbasic/10.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18645,7 +18628,6 @@
       "type": "package",
       "path": "microsoft.win32.primitives/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18683,7 +18665,6 @@
       "type": "package",
       "path": "runtime.any.system.collections/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18710,7 +18691,6 @@
       "type": "package",
       "path": "runtime.any.system.diagnostics.tools/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18737,7 +18717,6 @@
       "type": "package",
       "path": "runtime.any.system.diagnostics.tracing/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18764,7 +18743,6 @@
       "type": "package",
       "path": "runtime.any.system.globalization/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18791,7 +18769,6 @@
       "type": "package",
       "path": "runtime.any.system.globalization.calendars/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18815,7 +18792,6 @@
       "type": "package",
       "path": "runtime.any.system.io/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18842,7 +18818,6 @@
       "type": "package",
       "path": "runtime.any.system.reflection/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18869,7 +18844,6 @@
       "type": "package",
       "path": "runtime.any.system.reflection.extensions/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18896,7 +18870,6 @@
       "type": "package",
       "path": "runtime.any.system.reflection.primitives/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18923,7 +18896,6 @@
       "type": "package",
       "path": "runtime.any.system.resources.resourcemanager/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18950,7 +18922,6 @@
       "type": "package",
       "path": "runtime.any.system.runtime/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -18977,7 +18948,6 @@
       "type": "package",
       "path": "runtime.any.system.runtime.handles/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19000,7 +18970,6 @@
       "type": "package",
       "path": "runtime.any.system.runtime.interopservices/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19026,7 +18995,6 @@
       "type": "package",
       "path": "runtime.any.system.text.encoding/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19052,7 +19020,6 @@
       "type": "package",
       "path": "runtime.any.system.text.encoding.extensions/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19078,7 +19045,6 @@
       "type": "package",
       "path": "runtime.any.system.threading.tasks/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19105,7 +19071,6 @@
       "type": "package",
       "path": "runtime.any.system.threading.timer/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19131,7 +19096,6 @@
       "type": "package",
       "path": "runtime.aot.system.collections/4.0.10",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19146,7 +19110,6 @@
       "type": "package",
       "path": "runtime.aot.system.diagnostics.tools/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19161,7 +19124,6 @@
       "type": "package",
       "path": "runtime.aot.system.diagnostics.tracing/4.0.20",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19176,7 +19138,6 @@
       "type": "package",
       "path": "runtime.aot.system.globalization/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19191,7 +19152,6 @@
       "type": "package",
       "path": "runtime.aot.system.globalization.calendars/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19206,7 +19166,6 @@
       "type": "package",
       "path": "runtime.aot.system.io/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19222,7 +19181,6 @@
       "type": "package",
       "path": "runtime.aot.system.reflection/4.0.10",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19237,7 +19195,6 @@
       "type": "package",
       "path": "runtime.aot.system.reflection.extensions/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19252,7 +19209,6 @@
       "type": "package",
       "path": "runtime.aot.system.reflection.primitives/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19277,7 +19233,6 @@
       "type": "package",
       "path": "runtime.aot.system.resources.resourcemanager/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19292,7 +19247,6 @@
       "type": "package",
       "path": "runtime.aot.system.runtime/4.0.20",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19307,7 +19261,6 @@
       "type": "package",
       "path": "runtime.aot.system.runtime.handles/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19322,7 +19275,6 @@
       "type": "package",
       "path": "runtime.aot.system.runtime.interopservices/4.0.20",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19337,7 +19289,6 @@
       "type": "package",
       "path": "runtime.aot.system.text.encoding/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19352,7 +19303,6 @@
       "type": "package",
       "path": "runtime.aot.system.text.encoding.extensions/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19367,7 +19317,6 @@
       "type": "package",
       "path": "runtime.aot.system.threading.tasks/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19382,7 +19331,6 @@
       "type": "package",
       "path": "runtime.aot.system.threading.timer/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19397,7 +19345,6 @@
       "type": "package",
       "path": "runtime.native.system.io.compression/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19411,7 +19358,6 @@
       "type": "package",
       "path": "runtime.native.system.security.cryptography/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19425,7 +19371,6 @@
       "type": "package",
       "path": "runtime.win.microsoft.win32.primitives/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19441,7 +19386,6 @@
       "type": "package",
       "path": "runtime.win.system.diagnostics.debug/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19462,7 +19406,6 @@
       "type": "package",
       "path": "runtime.win.system.io.filesystem/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19482,7 +19425,6 @@
       "type": "package",
       "path": "runtime.win.system.net.primitives/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19499,7 +19441,6 @@
       "type": "package",
       "path": "runtime.win.system.net.sockets/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19516,7 +19457,6 @@
       "type": "package",
       "path": "runtime.win.system.runtime.extensions/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19534,7 +19474,6 @@
       "type": "package",
       "path": "runtime.win10-arm-aot.runtime.native.system.io.compression/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19548,7 +19487,6 @@
       "type": "package",
       "path": "runtime.win10-x64-aot.runtime.native.system.io.compression/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19562,7 +19500,6 @@
       "type": "package",
       "path": "runtime.win10-x86-aot.runtime.native.system.io.compression/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19576,7 +19513,6 @@
       "type": "package",
       "path": "runtime.win7-x64.microsoft.netcore.jit/1.0.3",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19591,7 +19527,6 @@
       "type": "package",
       "path": "runtime.win7-x64.microsoft.netcore.runtime.coreclr/1.0.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19620,7 +19555,6 @@
       "type": "package",
       "path": "runtime.win7-x64.runtime.native.system.io.compression/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19634,7 +19568,6 @@
       "type": "package",
       "path": "runtime.win7-x86.microsoft.netcore.jit/1.0.3",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19649,7 +19582,6 @@
       "type": "package",
       "path": "runtime.win7-x86.microsoft.netcore.runtime.coreclr/1.0.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19678,7 +19610,6 @@
       "type": "package",
       "path": "runtime.win7-x86.runtime.native.system.io.compression/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19692,7 +19623,6 @@
       "type": "package",
       "path": "runtime.win7.system.private.uri/4.0.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19709,7 +19639,6 @@
       "type": "package",
       "path": "runtime.win8-arm.microsoft.netcore.runtime.coreclr/1.0.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19739,7 +19668,6 @@
       "type": "package",
       "path": "runtime.win8-arm.runtime.native.system.io.compression/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19753,7 +19681,6 @@
       "type": "package",
       "path": "system.appcontext/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19808,7 +19735,6 @@
       "type": "package",
       "path": "system.buffers/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19823,7 +19749,6 @@
       "type": "package",
       "path": "system.collections/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19891,7 +19816,6 @@
       "type": "package",
       "path": "system.collections.concurrent/4.0.12",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19959,7 +19883,6 @@
       "type": "package",
       "path": "system.collections.immutable/1.2.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -19976,7 +19899,6 @@
       "type": "package",
       "path": "system.collections.nongeneric/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20015,7 +19937,6 @@
       "type": "package",
       "path": "system.collections.specialized/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20054,7 +19975,6 @@
       "type": "package",
       "path": "system.componentmodel/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20113,7 +20033,6 @@
       "type": "package",
       "path": "system.componentmodel.annotations/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20192,7 +20111,6 @@
       "type": "package",
       "path": "system.componentmodel.eventbasedasync/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20262,7 +20180,6 @@
       "type": "package",
       "path": "system.data.common/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20313,7 +20230,6 @@
       "type": "package",
       "path": "system.diagnostics.contracts/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20373,7 +20289,6 @@
       "type": "package",
       "path": "system.diagnostics.debug/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20441,7 +20356,6 @@
       "type": "package",
       "path": "system.diagnostics.diagnosticsource/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20462,7 +20376,6 @@
       "type": "package",
       "path": "system.diagnostics.stacktrace/4.0.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20502,7 +20415,6 @@
       "type": "package",
       "path": "system.diagnostics.tools/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20559,7 +20471,6 @@
       "type": "package",
       "path": "system.diagnostics.tracing/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20649,7 +20560,6 @@
       "type": "package",
       "path": "system.dynamic.runtime/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20720,7 +20630,6 @@
       "type": "package",
       "path": "system.globalization/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20788,7 +20697,6 @@
       "type": "package",
       "path": "system.globalization.calendars/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20826,7 +20734,6 @@
       "type": "package",
       "path": "system.globalization.extensions/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20867,7 +20774,6 @@
       "type": "package",
       "path": "system.io/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -20948,7 +20854,6 @@
       "type": "package",
       "path": "system.io.compression/4.1.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21019,7 +20924,6 @@
       "type": "package",
       "path": "system.io.compression.zipfile/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21058,7 +20962,6 @@
       "type": "package",
       "path": "system.io.filesystem/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21096,7 +20999,6 @@
       "type": "package",
       "path": "system.io.filesystem.primitives/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21135,7 +21037,6 @@
       "type": "package",
       "path": "system.io.isolatedstorage/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21172,7 +21073,6 @@
       "type": "package",
       "path": "system.io.unmanagedmemorystream/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21211,7 +21111,6 @@
       "type": "package",
       "path": "system.linq/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21283,7 +21182,6 @@
       "type": "package",
       "path": "system.linq.expressions/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21367,7 +21265,6 @@
       "type": "package",
       "path": "system.linq.parallel/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21424,7 +21321,6 @@
       "type": "package",
       "path": "system.linq.queryable/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21483,7 +21379,6 @@
       "type": "package",
       "path": "system.net.http/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21565,7 +21460,6 @@
       "type": "package",
       "path": "system.net.http.rtc/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21603,7 +21497,6 @@
       "type": "package",
       "path": "system.net.nameresolution/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21645,7 +21538,6 @@
       "type": "package",
       "path": "system.net.networkinformation/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21720,7 +21612,6 @@
       "type": "package",
       "path": "system.net.primitives/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21799,7 +21690,6 @@
       "type": "package",
       "path": "system.net.requests/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21882,7 +21772,6 @@
       "type": "package",
       "path": "system.net.sockets/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21920,7 +21809,6 @@
       "type": "package",
       "path": "system.net.webheadercollection/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21959,7 +21847,6 @@
       "type": "package",
       "path": "system.net.websockets/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -21998,7 +21885,6 @@
       "type": "package",
       "path": "system.net.websockets.client/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22040,7 +21926,6 @@
       "type": "package",
       "path": "system.numerics.vectors/4.1.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22075,7 +21960,6 @@
       "type": "package",
       "path": "system.numerics.vectors.windowsruntime/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22089,7 +21973,6 @@
       "type": "package",
       "path": "system.objectmodel/4.0.12",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22159,7 +22042,6 @@
       "type": "package",
       "path": "system.private.datacontractserialization/4.1.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22175,7 +22057,6 @@
       "type": "package",
       "path": "system.private.servicemodel/4.1.3",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22192,7 +22073,6 @@
       "type": "package",
       "path": "system.private.uri/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22206,7 +22086,6 @@
       "type": "package",
       "path": "system.reflection/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22287,7 +22166,6 @@
       "type": "package",
       "path": "system.reflection.context/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22330,7 +22208,6 @@
       "type": "package",
       "path": "system.reflection.dispatchproxy/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22368,7 +22245,6 @@
       "type": "package",
       "path": "system.reflection.emit/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22400,7 +22276,6 @@
       "type": "package",
       "path": "system.reflection.emit.ilgeneration/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22433,7 +22308,6 @@
       "type": "package",
       "path": "system.reflection.emit.lightweight/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22466,7 +22340,6 @@
       "type": "package",
       "path": "system.reflection.extensions/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22523,7 +22396,6 @@
       "type": "package",
       "path": "system.reflection.metadata/1.3.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22540,7 +22412,6 @@
       "type": "package",
       "path": "system.reflection.primitives/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22597,7 +22468,6 @@
       "type": "package",
       "path": "system.reflection.typeextensions/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22651,7 +22521,6 @@
       "type": "package",
       "path": "system.resources.resourcemanager/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22708,7 +22577,6 @@
       "type": "package",
       "path": "system.runtime/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22800,7 +22668,6 @@
       "type": "package",
       "path": "system.runtime.extensions/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22881,7 +22748,6 @@
       "type": "package",
       "path": "system.runtime.handles/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -22919,7 +22785,6 @@
       "type": "package",
       "path": "system.runtime.interopservices/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23009,7 +22874,6 @@
       "type": "package",
       "path": "system.runtime.interopservices.windowsruntime/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23058,7 +22922,6 @@
       "type": "package",
       "path": "system.runtime.numerics/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23115,7 +22978,6 @@
       "type": "package",
       "path": "system.runtime.serialization.json/4.0.3",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23174,7 +23036,6 @@
       "type": "package",
       "path": "system.runtime.serialization.primitives/4.1.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23247,7 +23108,6 @@
       "type": "package",
       "path": "system.runtime.serialization.xml/4.1.2",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23319,7 +23179,6 @@
       "type": "package",
       "path": "system.runtime.windowsruntime/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23375,7 +23234,6 @@
       "type": "package",
       "path": "system.runtime.windowsruntime.ui.xaml/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23417,7 +23275,6 @@
       "type": "package",
       "path": "system.security.claims/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23456,7 +23313,6 @@
       "type": "package",
       "path": "system.security.cryptography.algorithms/4.2.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23496,7 +23352,6 @@
       "type": "package",
       "path": "system.security.cryptography.cng/4.2.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23524,7 +23379,6 @@
       "type": "package",
       "path": "system.security.cryptography.encoding/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23565,7 +23419,6 @@
       "type": "package",
       "path": "system.security.cryptography.primitives/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23594,7 +23447,6 @@
       "type": "package",
       "path": "system.security.cryptography.x509certificates/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23650,7 +23502,6 @@
       "type": "package",
       "path": "system.security.principal/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23709,7 +23560,6 @@
       "type": "package",
       "path": "system.servicemodel.duplex/4.0.4",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23732,7 +23582,6 @@
       "type": "package",
       "path": "system.servicemodel.http/4.1.3",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23773,7 +23622,6 @@
       "type": "package",
       "path": "system.servicemodel.nettcp/4.1.3",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23799,7 +23647,6 @@
       "type": "package",
       "path": "system.servicemodel.primitives/4.1.3",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23840,7 +23687,6 @@
       "type": "package",
       "path": "system.servicemodel.security/4.0.4",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23866,7 +23712,6 @@
       "type": "package",
       "path": "system.text.encoding/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23934,7 +23779,6 @@
       "type": "package",
       "path": "system.text.encoding.codepages/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -23973,7 +23817,6 @@
       "type": "package",
       "path": "system.text.encoding.extensions/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24041,7 +23884,6 @@
       "type": "package",
       "path": "system.text.regularexpressions/4.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24124,7 +23966,6 @@
       "type": "package",
       "path": "system.threading/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24195,7 +24036,6 @@
       "type": "package",
       "path": "system.threading.overlapped/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24225,7 +24065,6 @@
       "type": "package",
       "path": "system.threading.tasks/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24293,7 +24132,6 @@
       "type": "package",
       "path": "system.threading.tasks.dataflow/4.6.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24310,7 +24148,6 @@
       "type": "package",
       "path": "system.threading.tasks.extensions/4.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24327,7 +24164,6 @@
       "type": "package",
       "path": "system.threading.tasks.parallel/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24384,7 +24220,6 @@
       "type": "package",
       "path": "system.threading.timer/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24439,7 +24274,6 @@
       "type": "package",
       "path": "system.xml.readerwriter/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24509,7 +24343,6 @@
       "type": "package",
       "path": "system.xml.xdocument/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24579,7 +24412,6 @@
       "type": "package",
       "path": "system.xml.xmldocument/4.0.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24618,7 +24450,6 @@
       "type": "package",
       "path": "system.xml.xmlserializer/4.0.11",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -24697,6 +24528,6 @@
   "tools": {},
   "projectFileToolGroups": {},
   "packageFolders": {
-    "C:\\Users\\gspalla.LICEF\\.nuget\\packages\\": {}
+    "C:\\Users\\spag1901\\.nuget\\packages\\": {}
   }
 }

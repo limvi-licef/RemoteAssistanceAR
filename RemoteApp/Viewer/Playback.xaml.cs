@@ -85,9 +85,9 @@ namespace Viewer
             // Initialization UDP communication
             try
             {
-                m_sIPLocalUDP = "192.168.137.1";
+                m_sIPLocalUDP = "10.44.160.22";
                 m_sPortLocalUDP = "62503";
-                m_sIPRemoteUDP = "192.168.137.161";
+                m_sIPRemoteUDP = "10.44.161.15";
                 m_sPortRemoteUDP = "63777";
                 await m_dsUdpSocket.ConnectAsync(new EndpointPair(new HostName(m_sIPLocalUDP), m_sPortLocalUDP, new HostName(m_sIPRemoteUDP), m_sPortRemoteUDP));
                 m_output = new DataWriter(m_dsUdpSocket.OutputStream);

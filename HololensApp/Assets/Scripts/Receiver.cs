@@ -4,10 +4,13 @@
 using UnityEngine;
 using HoloToolkit.Unity.Receivers;
 using HoloToolkit.Unity.InputModule;
+using HoloToolkit.Unity.SpatialMapping;
 
 public class Receiver : InteractionReceiver
 {
     public UDPListener m_udp;
+    public SpatialMappingManager m_spatialMappingManager;
+    public AnnotationsManager m_annotationManager;
 
     void Start()
      {
@@ -36,11 +39,22 @@ public class Receiver : InteractionReceiver
 
     protected override void InputClicked(GameObject obj, InputClickedEventData eventData)
     {
+        Debug.Log(obj.name);
         if (obj.name == "bnCall")
         {
             Debug.Log("[Receiver::InputClicked] Button clicked to initiate call");
             m_udp.sendUdpMessage("CALL start");
         }
-        
+        else if(obj.name == "bnDisplayMesh")
+        {
+            //m_spatialMappingManager.DrawVisualMeshes = !m_spatialMappingManager.DrawVisualMeshes;
+            //ButtonController b = (ButtonController)obj;
+            if (m_annotationManager.getProcessDebug() == 0)
+                m_annotationManager.processDebug(2);
+            else if (m_annotationManager.getProcessDebug() == 2)
+                m_annotationManager.processDebug(0);
+
+            m_annotationManager.setDebugText("Test display debug message");
+        }
     }
 }
