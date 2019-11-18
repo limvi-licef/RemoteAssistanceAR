@@ -69,10 +69,18 @@ namespace Viewer
                 Window.Current.Activate();
             }
 
-            if (e.Arguments.Length == 1)
+            // Utiliser ça?
+            /*     protected override void OnStartup(StartupEventArgs e)
+    {
+        //e.Args is the string[] of command line argruments
+    }*/
+
+            Debug.WriteLine("[Playback::start] " + Settings.m_fullFeatures);
+
+           /* if (e.Arguments.Length == 1)
             {
                 Debug.WriteLine("[Playback::start] Waiting for a connection...");
-            }
+            }*/
         }
 
         /// <summary>

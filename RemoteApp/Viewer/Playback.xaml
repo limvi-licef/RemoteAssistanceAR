@@ -39,9 +39,9 @@
                         <ImageBrush Stretch="Fill" ImageSource="Assets/arrowGuide_Unselected.png"/>
                     </Button.Background>
                 </Button>
-                <TextBox x:Name="tbMessage" TextWrapping="Wrap" Text="Ecrire le message à envoyer ici!" Margin="0,0,20,0" Width="296"/>
+                <TextBox x:Name="tbMessage" TextWrapping="Wrap" Text="Write the message to send here" Margin="0,0,20,0" Width="296"/>
                 <Button x:Name="bnSendMessage" Content="Send" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,50,0" Width="58" Click="bnSendMessage_Click"/>
-                <TextBlock x:Name="txNoHitsInfo" TextWrapping="Wrap" Text="Impossible d'ajouter une annotation à cet endroit!" Padding="0,0,301,0" HorizontalAlignment="Left" TextAlignment="Center" LineHeight="12" FontSize="20" Width="557"/>
+                <TextBlock x:Name="txNoHitsInfo" TextWrapping="Wrap" Text="Cannot add an annotation here" Padding="0,0,301,0" HorizontalAlignment="Left" TextAlignment="Center" LineHeight="12" FontSize="20" Width="557"/>
                 <Button x:Name="bnDebug" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="50" Click="bnDebug_Click">
                     <Button.Background>
                         <ImageBrush Stretch="Fill" ImageSource="Assets/debugInfo_Unselected.png"/>

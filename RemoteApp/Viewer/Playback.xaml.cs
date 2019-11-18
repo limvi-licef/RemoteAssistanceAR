@@ -66,6 +66,7 @@ namespace Viewer
             m_iDebugStatus = 0;
             m_bIsConnected = false;
 
+            initializeGUI();
             start();
 
             ApplicationView.PreferredLaunchViewSize = new Windows.Foundation.Size(1280, 720+90);
@@ -279,6 +280,24 @@ namespace Viewer
                 }
             }
         }*/
+
+        private void initializeGUI()
+        {
+            if (Settings.m_fullFeatures == false)
+            {
+                bnArrowGuidance.Opacity = 0;
+                bnArrowGuidance.IsHitTestVisible = false;
+                //bnArrowGuidance.Focus(FocusState.Unfocused);
+                tbMessage.Opacity = 0;
+                tbMessage.IsHitTestVisible = false;
+
+                bnSendMessage.Opacity = 0;
+                bnSendMessage.IsHitTestVisible = false;
+
+                bnDebug.Opacity = 0;
+                bnDebug.IsHitTestVisible = false;
+            }
+        }
 
         private void bnArrow_Click(object sender, RoutedEventArgs e)
         {
