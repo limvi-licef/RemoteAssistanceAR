@@ -135,82 +135,50 @@ namespace Viewer
             else if (pPoint.Properties.IsLeftButtonPressed && m_iButtonArrowGuidanceStatus == 1 && m_joystickStatus == JOYSTICKSTATUS.JOYSTICKSTATUS_ONGOING)
             {
                 double[] coordNorm = getNormalizedCoodinates(pPoint.Position.X, pPoint.Position.Y);
-                double[] vInit = new double[2];
-                vInit[0] = 1.0 - m_joystickInitX;
-                vInit[1] = 1.0 - m_joystickInitY;
+                double[] vInitX = new double[2];
+                vInitX[0] = 1.0 - m_joystickInitX;
+                vInitX[1] = 0.5 - m_joystickInitY;
+                double[] vInitY = new double[2];
+                vInitY[0] = 0.5 - m_joystickInitX;
+                vInitY[1] = 1.0 - m_joystickInitY;
                 double[] vNew = new double[2];
                 vNew[0] = coordNorm[0] - m_joystickInitX;
                 vNew[1] = coordNorm[1] - m_joystickInitY;
 
-                double vInitL = Math.Sqrt(Math.Pow(vInit[0], 2) + Math.Pow(vInit[1], 2));
+                double vInitXL = Math.Sqrt(Math.Pow(vInitX[0], 2) + Math.Pow(vInitX[1], 2));
+                double vInitYL = Math.Sqrt(Math.Pow(vInitY[0], 2) + Math.Pow(vInitY[1], 2));
                 double vNewL = Math.Sqrt(Math.Pow(vNew[0], 2) + Math.Pow(vNew[1], 2));
 
-                double dotProduct = vInit[0] * vNew[0] + vInit[1] * vNew[1];
+                double dotProductX = vInitX[0] * vNew[0] + vInitX[1] * vNew[1];
+                double dotProductY = vInitY[0] * vNew[0] + vInitY[1] * vNew[1];
 
-                double angle = (Math.Acos( dotProduct / (vInitL * vNewL)) * 180) / Math.PI;
+                double angleX = (Math.Acos( dotProductX / (vInitXL * vNewL)) * 180) / Math.PI;
+                double angleY = (Math.Acos(dotProductY / (vInitYL * vNewL)) * 180) / Math.PI;
 
-                bool goLeft = false;
-                bool goRight = false;
-                bool goTop = false;
-                bool goDown = false;
+                //Debug.Write(angleX + " " + angleY +  " ");
 
-                /*if (angle >= 0 && angle < 90)
+                if ( angleX < 45 )
                 {
-                    goRight = true;
-                    goDown = true;
-                }
-                else if (angle >= 90 && angle < 180)
-                {
-                    goLeft = true;
-                    goDown = true;
-                }
-                else if (angle >= 180 && angle < 270)
-                {
-                    goLeft = true;
-                    goTop = true;
-                }
-                else if (angle >= 270 && angle < 360)
-                {
-                    goRight = true;
-                    goTop = true;
-                }*/
-
-                Debug.Write("[Playback::Viewer_PointerMoved] ");
-
-                if (angle >= 315 && angle < 45)
-                {
-                    goRight = true;
-                }
-                if (angle >=45 && angle < 135)
-                {
-                    goDown = true;
-                }
-                if (angle >= 135 && angle < 225)
-                {
-                    goLeft = true;
-                }
-                if (angle >= 225 && angle < 315)
-                {
-                    goTop = true;
-                }
-
-                if (goLeft)
-                {
-                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_LEFT);
-                }
-                if (goRight)
-                {
+                    //Debug.Write("Right");
                     sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_RIGHT);
                 }
-                if (goDown)
+                else if ( angleX > 135)
                 {
-                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_DOWN);
+                    //Debug.Write("Left");
+                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_LEFT);
                 }
-                if (goTop)
+                else if ( angleY < 45)
                 {
+                    //Debug.Write("Top");
                     sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_UP);
                 }
+                else if ( angleY > 135)
+                {
+                    //Debug.Write("Down");
+                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_DOWN);
+                }
 
+                //Debug.WriteLine("");
             }
         }
 
