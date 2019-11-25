@@ -8,7 +8,8 @@ namespace Viewer
 {
     class Settings
     {
-        public static bool m_fullFeatures = false;
+        public static bool m_fullFeatures = true;
+        public static bool m_useJoystick = true;
     }
     
 }

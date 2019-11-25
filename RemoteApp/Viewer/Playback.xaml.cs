@@ -52,6 +52,12 @@ namespace Viewer
         private bool m_bIsConnected;
         private DatagramSocket m_dsUdpSocket;
 
+        // For Joystick
+        enum JOYSTICKSTATUS { JOYSTICKSTATUS_STOPPED = 0, JOYSTICKSTATUS_INIT = 1, JOYSTICKSTATUS_ONGOING = 2};
+        private JOYSTICKSTATUS m_joystickStatus;
+        private double m_joystickInitX;
+        private double m_joystickInitY;
+
         public Playback()
         {
             this.InitializeComponent();
@@ -74,6 +80,11 @@ namespace Viewer
 
             Brush b = new SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0));
             txNoHitsInfo.Foreground = b;
+
+            // Joystick
+            m_joystickStatus = JOYSTICKSTATUS.JOYSTICKSTATUS_STOPPED;
+            m_joystickInitX = -1;
+            m_joystickInitY = -1;
         }
 
         async void start()
@@ -121,6 +132,86 @@ namespace Viewer
                 Debug.Write("[Playback::Viewer_PointerMoved] " + pPoint.Position.ToString() + " | " + coordNorm[0] + " " + coordNorm[1] + "\n");
                 sendUdpMessagePOS(coordNorm[0], coordNorm[1]);
             }
+            else if (pPoint.Properties.IsLeftButtonPressed && m_iButtonArrowGuidanceStatus == 1 && m_joystickStatus == JOYSTICKSTATUS.JOYSTICKSTATUS_ONGOING)
+            {
+                double[] coordNorm = getNormalizedCoodinates(pPoint.Position.X, pPoint.Position.Y);
+                double[] vInit = new double[2];
+                vInit[0] = 1.0 - m_joystickInitX;
+                vInit[1] = 1.0 - m_joystickInitY;
+                double[] vNew = new double[2];
+                vNew[0] = coordNorm[0] - m_joystickInitX;
+                vNew[1] = coordNorm[1] - m_joystickInitY;
+
+                double vInitL = Math.Sqrt(Math.Pow(vInit[0], 2) + Math.Pow(vInit[1], 2));
+                double vNewL = Math.Sqrt(Math.Pow(vNew[0], 2) + Math.Pow(vNew[1], 2));
+
+                double dotProduct = vInit[0] * vNew[0] + vInit[1] * vNew[1];
+
+                double angle = (Math.Acos( dotProduct / (vInitL * vNewL)) * 180) / Math.PI;
+
+                bool goLeft = false;
+                bool goRight = false;
+                bool goTop = false;
+                bool goDown = false;
+
+                /*if (angle >= 0 && angle < 90)
+                {
+                    goRight = true;
+                    goDown = true;
+                }
+                else if (angle >= 90 && angle < 180)
+                {
+                    goLeft = true;
+                    goDown = true;
+                }
+                else if (angle >= 180 && angle < 270)
+                {
+                    goLeft = true;
+                    goTop = true;
+                }
+                else if (angle >= 270 && angle < 360)
+                {
+                    goRight = true;
+                    goTop = true;
+                }*/
+
+                Debug.Write("[Playback::Viewer_PointerMoved] ");
+
+                if (angle >= 315 && angle < 45)
+                {
+                    goRight = true;
+                }
+                if (angle >=45 && angle < 135)
+                {
+                    goDown = true;
+                }
+                if (angle >= 135 && angle < 225)
+                {
+                    goLeft = true;
+                }
+                if (angle >= 225 && angle < 315)
+                {
+                    goTop = true;
+                }
+
+                if (goLeft)
+                {
+                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_LEFT);
+                }
+                if (goRight)
+                {
+                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_RIGHT);
+                }
+                if (goDown)
+                {
+                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_DOWN);
+                }
+                if (goTop)
+                {
+                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_UP);
+                }
+
+            }
         }
 
         private void Viewer_PointerReleased(object sender, PointerRoutedEventArgs e)
@@ -143,32 +234,45 @@ namespace Viewer
                     Debug.Write(pPoint.Position.ToString() + "\t No msg sent \n");
                 }
             }
+            else if (m_iButtonArrowGuidanceStatus == 1 && m_joystickStatus == JOYSTICKSTATUS.JOYSTICKSTATUS_ONGOING)
+            {
+                m_joystickStatus = JOYSTICKSTATUS.JOYSTICKSTATUS_STOPPED;
+            }
         }
 
         private void Viewer_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            if ( m_iButtonArrowGuidanceStatus == 1 )
-             {
-                 PointerPoint pPoint = e.GetCurrentPoint(this);
-                 double[] coordNorm = getNormalizedCoodinates(pPoint.Position.X, pPoint.Position.Y);
+            if (m_iButtonArrowGuidanceStatus == 1 && Settings.m_useJoystick == false)
+            {
+                PointerPoint pPoint = e.GetCurrentPoint(this);
+                double[] coordNorm = getNormalizedCoodinates(pPoint.Position.X, pPoint.Position.Y);
 
-                 if ( coordNorm[0] < 0.35 && coordNorm[1] < 0.7 && coordNorm[1] > 0.3 )
-                 {
-                     sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_LEFT);
-                 }
-                 else if (coordNorm[0] > 0.65 && coordNorm[1] < 0.7 && coordNorm[1] > 0.3)
-                 {
-                     sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_RIGHT);
-                 }
-                 else if (coordNorm[0] > 0.35 && coordNorm[0] < 0.65 && coordNorm[1] > 0.5)
-                 {
-                     sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_UP);
-                 }
-                 else if (coordNorm[0] > 0.35 && coordNorm[0] < 0.65 && coordNorm[1] < 0.3)
-                 {
-                     sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_DOWN);
-                 }
-             }
+                if (coordNorm[0] < 0.35 && coordNorm[1] < 0.7 && coordNorm[1] > 0.3)
+                {
+                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_LEFT);
+                }
+                else if (coordNorm[0] > 0.65 && coordNorm[1] < 0.7 && coordNorm[1] > 0.3)
+                {
+                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_RIGHT);
+                }
+                else if (coordNorm[0] > 0.35 && coordNorm[0] < 0.65 && coordNorm[1] > 0.5)
+                {
+                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_UP);
+                }
+                else if (coordNorm[0] > 0.35 && coordNorm[0] < 0.65 && coordNorm[1] < 0.3)
+                {
+                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_DOWN);
+                }
+            }
+            else if (m_iButtonArrowGuidanceStatus == 1 && Settings.m_useJoystick == true && m_joystickStatus == JOYSTICKSTATUS.JOYSTICKSTATUS_STOPPED)
+            {
+                PointerPoint pPoint = e.GetCurrentPoint(this);
+                double[] coordNorm = getNormalizedCoodinates(pPoint.Position.X, pPoint.Position.Y);
+                m_joystickInitX = coordNorm[0];
+                m_joystickInitY = coordNorm[1];
+                m_joystickStatus = JOYSTICKSTATUS.JOYSTICKSTATUS_ONGOING;
+
+            }
         }
 
         private void Viewer_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
