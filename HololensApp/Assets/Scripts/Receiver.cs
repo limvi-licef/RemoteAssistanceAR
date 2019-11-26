@@ -49,12 +49,13 @@ public class Receiver : InteractionReceiver
         {
             //m_spatialMappingManager.DrawVisualMeshes = !m_spatialMappingManager.DrawVisualMeshes;
             //ButtonController b = (ButtonController)obj;
-            if (m_annotationManager.getProcessDebug() == 0)
+            /*if (m_annotationManager.getProcessDebug() == 0)
                 m_annotationManager.processDebug(2);
             else if (m_annotationManager.getProcessDebug() == 2)
                 m_annotationManager.processDebug(0);
 
-            m_annotationManager.setDebugText("Test display debug message");
+            m_annotationManager.setDebugText("Test display debug message");*/
+            m_annotationManager.enableGuidanceArrow(true);
         }
     }
 }

@@ -160,22 +160,22 @@ namespace Viewer
                 if ( angleX < 45 )
                 {
                     //Debug.Write("Right");
-                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_RIGHT);
+                    sendUdpMessageNAVZONES(DIRECTIONS.DIRECTIONS_RIGHT);
                 }
                 else if ( angleX > 135)
                 {
                     //Debug.Write("Left");
-                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_LEFT);
+                    sendUdpMessageNAVZONES(DIRECTIONS.DIRECTIONS_LEFT);
                 }
                 else if ( angleY < 45)
                 {
                     //Debug.Write("Top");
-                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_UP);
+                    sendUdpMessageNAVZONES(DIRECTIONS.DIRECTIONS_UP);
                 }
                 else if ( angleY > 135)
                 {
                     //Debug.Write("Down");
-                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_DOWN);
+                    sendUdpMessageNAVZONES(DIRECTIONS.DIRECTIONS_DOWN);
                 }
 
                 //Debug.WriteLine("");
@@ -206,33 +206,47 @@ namespace Viewer
             {
                 m_joystickStatus = JOYSTICKSTATUS.JOYSTICKSTATUS_STOPPED;
             }
+            else if (m_iButtonArrowGuidanceStatus == 1 && Settings.m_useJoystick == Settings.ARROW_TYPE.ARROW_TYPE_CLICK)
+            {
+                Pointer p = e.Pointer;
+                PointerPoint pPoint = e.GetCurrentPoint(this);
+
+                Debug.WriteLine("Sending coordinates for arrow position");
+
+                double[] coordNorm = getNormalizedCoodinates(pPoint.Position.X, pPoint.Position.Y);
+
+                if (coordNorm[0] >= 0 && coordNorm[0] <= 1 && coordNorm[1] >= 0 && coordNorm[1] <= 1)
+                {
+                    sendUdpMessageNAVDIRECTION(coordNorm[0], coordNorm[1]);
+                }
+            }
         }
 
         private void Viewer_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            if (m_iButtonArrowGuidanceStatus == 1 && Settings.m_useJoystick == false)
+            if (m_iButtonArrowGuidanceStatus == 1 && Settings.m_useJoystick == Settings.ARROW_TYPE.ARROW_TYPE_ZONES)
             {
                 PointerPoint pPoint = e.GetCurrentPoint(this);
                 double[] coordNorm = getNormalizedCoodinates(pPoint.Position.X, pPoint.Position.Y);
 
                 if (coordNorm[0] < 0.35 && coordNorm[1] < 0.7 && coordNorm[1] > 0.3)
                 {
-                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_LEFT);
+                    sendUdpMessageNAVZONES(DIRECTIONS.DIRECTIONS_LEFT);
                 }
                 else if (coordNorm[0] > 0.65 && coordNorm[1] < 0.7 && coordNorm[1] > 0.3)
                 {
-                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_RIGHT);
+                    sendUdpMessageNAVZONES(DIRECTIONS.DIRECTIONS_RIGHT);
                 }
                 else if (coordNorm[0] > 0.35 && coordNorm[0] < 0.65 && coordNorm[1] > 0.5)
                 {
-                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_UP);
+                    sendUdpMessageNAVZONES(DIRECTIONS.DIRECTIONS_UP);
                 }
                 else if (coordNorm[0] > 0.35 && coordNorm[0] < 0.65 && coordNorm[1] < 0.3)
                 {
-                    sendUdpMessageNAV(DIRECTIONS.DIRECTIONS_DOWN);
+                    sendUdpMessageNAVZONES(DIRECTIONS.DIRECTIONS_DOWN);
                 }
             }
-            else if (m_iButtonArrowGuidanceStatus == 1 && Settings.m_useJoystick == true && m_joystickStatus == JOYSTICKSTATUS.JOYSTICKSTATUS_STOPPED)
+            else if (m_iButtonArrowGuidanceStatus == 1 && Settings.m_useJoystick == Settings.ARROW_TYPE.ARROW_TYPE_JOYSTICK && m_joystickStatus == JOYSTICKSTATUS.JOYSTICKSTATUS_STOPPED)
             {
                 PointerPoint pPoint = e.GetCurrentPoint(this);
                 double[] coordNorm = getNormalizedCoodinates(pPoint.Position.X, pPoint.Position.Y);
@@ -562,9 +576,9 @@ namespace Viewer
             sendUdpMessage(msgToSend);
         }
 
-        private void sendUdpMessageNAV(DIRECTIONS d)
+        private void sendUdpMessageNAVZONES(DIRECTIONS d)
         {
-           string msgToSend = "NAV ";
+            string msgToSend = "NAV ROTATE ";
             switch (d)
             {
                 case DIRECTIONS.DIRECTIONS_LEFT:
@@ -580,6 +594,12 @@ namespace Viewer
                     msgToSend += "down";
                     break;
             }
+            sendUdpMessage(msgToSend);
+        }
+
+        private void sendUdpMessageNAVDIRECTION(double x, double y)
+        {
+            string msgToSend = "NAV DIRECTION x=" + x + " y=" + y;
             sendUdpMessage(msgToSend);
         }
 

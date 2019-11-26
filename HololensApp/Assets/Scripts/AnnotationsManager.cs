@@ -29,6 +29,10 @@ public class AnnotationsManager : MonoBehaviour
     private double m_dTimer;
     private bool m_bTimerEnabled;
 
+    private bool m_bArrowToMoveDirection;
+    private bool m_bArrowRepeatComputation;
+    private RaycastHit m_rhArrowHit;
+
     private int m_iDebugStatus;
 
     // Start is called before the first frame update
@@ -55,6 +59,9 @@ public class AnnotationsManager : MonoBehaviour
         };
         m_gestureRecognizer.StartCapturingGestures();
 
+        m_bArrowToMoveDirection = false;
+        m_bArrowRepeatComputation = false;
+
         m_iDebugStatus = 0;
     }
 
@@ -68,8 +75,8 @@ public class AnnotationsManager : MonoBehaviour
             m_sDebugText = "[TestRaycast::Update] New computation ongoing x=" + m_relativePosX + " y=" + m_relativePosY;
             m_newComputation = false;
 
-            Vector3 userClickedPointTR = Camera.main.ScreenToWorldPoint(new Vector3((int)(Camera.main.pixelWidth * m_relativePosX), (int)(Camera.main.pixelHeight * m_relativePosY), Camera.main.nearClipPlane));
-            Vector3 directionTR = Camera.main.transform.forward;
+            //Vector3 userClickedPointTR = Camera.main.ScreenToWorldPoint(new Vector3((int)(Camera.main.pixelWidth * m_relativePosX), (int)(Camera.main.pixelHeight * m_relativePosY), Camera.main.nearClipPlane));
+            //Vector3 directionTR = Camera.main.transform.forward;
 
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(m_relativePosX, m_relativePosY,0));
             m_ray = ray;
@@ -78,7 +85,14 @@ public class AnnotationsManager : MonoBehaviour
             if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
             {
                 //m_sDebugText = "[TestRaycast::Update] What has been hit: " + hit.collider.gameObject.tag;
-                if (hit.collider.gameObject.tag == "Annotations")
+                if (m_bArrowToMoveDirection)
+                {
+                    m_goArrowGuidance.transform.SetPositionAndRotation(m_goArrowGuidance.transform.position, Quaternion.FromToRotation(Vector3.up, hit.point - m_goArrowGuidance.transform.position));
+                    //m_bArrowToMoveDirection = false;
+                    m_rhArrowHit = hit;
+                    m_bArrowRepeatComputation = true;
+                }
+                else if (hit.collider.gameObject.tag == "Annotations")
                 {
                     for ( int i = 0; i < m_annotations.Count; i ++)
                     {
@@ -127,16 +141,31 @@ public class AnnotationsManager : MonoBehaviour
             RaycastHit hitInfo;
             if (Physics.Raycast(headPosition, gazeDirection, out hitInfo))
             {
-                for (int i = 0; i < m_annotations.Count; i++)
+                if ( m_bGuidanceArrowEnabled)
                 {
-                    if (m_annotations[i] == hitInfo.collider.gameObject)
+                    Vector3 currentVector = new Vector3(m_goArrowGuidance.transform.rotation.x, m_goArrowGuidance.transform.rotation.y, m_goArrowGuidance.transform.rotation.z);
+                    Debug.Log(hitInfo.point + " - " + m_goArrowGuidance.transform.position + " | " + currentVector);
+                    //m_goArrowGuidance.transform.SetPositionAndRotation(m_goArrowGuidance.transform.position, Quaternion.FromToRotation(currentVector, hitInfo.point - m_goArrowGuidance.transform.position));
+                    m_goArrowGuidance.transform.SetPositionAndRotation(m_goArrowGuidance.transform.position, Quaternion.FromToRotation(Vector3.up, hitInfo.point - m_goArrowGuidance.transform.position));
+                }
+                else
+                {
+                    for (int i = 0; i < m_annotations.Count; i++)
                     {
-                        Destroy(m_annotations[i]);
-                        m_annotations.RemoveAt(i);
-                        //m_sDebugText = "[TestRaycast::Update] Object removed by user!";
+                        if (m_annotations[i] == hitInfo.collider.gameObject)
+                        {
+                            Destroy(m_annotations[i]);
+                            m_annotations.RemoveAt(i);
+                            //m_sDebugText = "[TestRaycast::Update] Object removed by user!";
+                        }
                     }
                 }
+                
             }
+        }
+        else if (m_bArrowRepeatComputation)
+        {
+            m_goArrowGuidance.transform.SetPositionAndRotation(m_goArrowGuidance.transform.position, Quaternion.FromToRotation(Vector3.up, m_rhArrowHit.point - m_goArrowGuidance.transform.position));
         }
 
         m_goArrowGuidance.SetActive(m_bGuidanceArrowEnabled);
@@ -195,6 +224,13 @@ public class AnnotationsManager : MonoBehaviour
         m_relativePosX = (float)x;
         m_relativePosY = (float)y;
         m_newComputation = true;
+        m_bArrowRepeatComputation = false;
+    }
+
+    public void changeDirectionArrow(double x, double y)
+    {
+        m_bArrowToMoveDirection = true;
+        addAnnotationRelativePos(x, y);
     }
 
     public void addAnnotationMessage(string message)
@@ -208,6 +244,8 @@ public class AnnotationsManager : MonoBehaviour
     public void changeAnnotation(int newAnnotation)
     {
         m_iAnnotationSelected = newAnnotation;
+        m_bArrowToMoveDirection = false;
+        m_bArrowRepeatComputation = false;
         //m_sDebugText = "[AnnotationsManager::changeAnnotation] Annotation type changed: " + m_iAnnotationSelected;
     }
 

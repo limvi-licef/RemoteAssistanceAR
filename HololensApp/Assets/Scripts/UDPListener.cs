@@ -102,6 +102,23 @@ public class UDPListener : MonoBehaviour
 #endif
     }
 
+    public async void sendUdpMessage(byte[] message)
+    {
+#if !UNITY_EDITOR
+        m_output.WriteBytes(message);
+       
+        try
+        {
+            await m_output.StoreAsync();
+            m_sStatus = "Message sent: " + message;
+        }
+        catch (Exception exception)
+        {
+            Debug.Log("[UDPListener::sendUdpMessage] Send failed with error: " + exception.Message);
+            m_sStatus = "Error: Send message failed: " + exception.Message;
+        }
+#endif
+    }
 
 
 #if !UNITY_EDITOR
@@ -140,22 +157,33 @@ public class UDPListener : MonoBehaviour
 
     public void rotateCylinder(string message)
     {
-        if (message == "NAV left")
+        if (message.StartsWith("NAV ROTATE"))
         {
-            m_vExecuteRotation.z = 10;
+            if (message == "NAV ROTATE left")
+            {
+                m_vExecuteRotation.z = 10;
+            }
+            else if (message == "NAV ROTATE right")
+            {
+                m_vExecuteRotation.z = -10;
+            }
+            else if (message == "NAV ROTATE up")
+            {
+                m_vExecuteRotation.x = -10;
+            }
+            else if (message == "NAV ROTATE down")
+            {
+                m_vExecuteRotation.x = 10;
+            }
         }
-        else if (message == "NAV right")
+        else if ( message.StartsWith("NAV DIRECTION"))
         {
-            m_vExecuteRotation.z = -10;
+            string[] temp = message.Split('=');
+            double x = double.Parse(temp[1].Split(' ')[0]);
+            double y = double.Parse(temp[2]);
+            m_raycast.changeDirectionArrow(x, y);
         }
-        else if (message == "NAV up")
-        {
-            m_vExecuteRotation.x = -10;
-        }
-        else if (message == "NAV down")
-        {
-            m_vExecuteRotation.x = 10;
-        }
+           
     }
 
     public void performRaycast(string message)
