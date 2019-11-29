@@ -7,6 +7,7 @@ using System.Threading;
 using UnityEngine;
 using HoloToolkit.Unity;
 using HoloToolkit.Unity.InputModule;
+using System.IO;
 
 namespace HoloToolkit.Sharing.VoiceChat
 {
@@ -14,8 +15,11 @@ namespace HoloToolkit.Sharing.VoiceChat
     /// Transmits data from your microphone to other clients connected to a SessionServer. Requires any receiving client to be running the MicrophoneReceiver script.
     /// </summary>
     [RequireComponent(typeof(AudioSource))]
-    public class MicrophoneTransmitter : MonoBehaviour
+    public class MicrophoneTransmitterRemoteAssistanceOld : MonoBehaviour
     {
+        public UDPListener m_udpListener;
+        public AnnotationsManager m_annotationsManager;
+
         /// <summary>
         /// Which type of microphone/quality to access
         /// </summary>
@@ -81,6 +85,9 @@ namespace HoloToolkit.Sharing.VoiceChat
         private NetworkConnection GetActiveConnection()
         {
             NetworkConnection connection = null;
+
+            //connection = new NetworkConnection();
+
             var stage = SharingStage.Instance;
             if (stage && stage.Manager != null)
             {
@@ -88,16 +95,13 @@ namespace HoloToolkit.Sharing.VoiceChat
             }
             if (connection == null || !connection.IsConnected())
             {
-                Debug.LogFormat("[MicrophoneTransmitter::GetActiveConnection] No active connection");
                 return null;
             }
-            Debug.LogFormat("[MicrophoneTransmitter::GetActiveConnection] Active connection");
             return connection;
         }
 
         private void Awake()
         {
-            Debug.LogFormat("[MicrophoneTransmitter::Awake] Called\n");
             audioSource = GetComponent<AudioSource>();
 
             int errorCode = MicStream.MicInitializeCustomRate((int)Streamtype, AudioSettings.outputSampleRate);
@@ -142,6 +146,7 @@ namespace HoloToolkit.Sharing.VoiceChat
 
         private void Update()
         {
+            //m_annotationsManager.setDebugText("Microphone update called");
             CheckForErrorOnCall(MicStream.MicSetGain(InputGain));
             audioSource.volume = HearSelf ? 1.0f : 0.0f;
 
@@ -150,7 +155,8 @@ namespace HoloToolkit.Sharing.VoiceChat
                 audioDataMutex.WaitOne();
 
                 var connection = GetActiveConnection();
-                hasServerConnection = (connection != null);
+                //hasServerConnection = (connection != null);
+                hasServerConnection = true;
                 if (hasServerConnection)
                 {
                     while (micBuffer.UsedCapacity >= 4 * AudioPacketSize)
@@ -161,7 +167,8 @@ namespace HoloToolkit.Sharing.VoiceChat
             }
             catch (Exception e)
             {
-                Debug.LogError("[MicrophoneTransmitter::Update] Error: " + e.Message);
+                //m_annotationsManager.setDebugText("Microphone update boulette!");
+                Debug.LogError(e.Message);
             }
             finally
             {
@@ -190,7 +197,6 @@ namespace HoloToolkit.Sharing.VoiceChat
 
         private void TransmitAudio(NetworkConnection connection)
         {
-            Debug.LogFormat("[MicrophoneTransmitter::TransmitAudio] Called");
             micBuffer.Read(packetSamples, 0, 4 * AudioPacketSize);
             SendFixedSizedChunk(connection, packetSamples, packetSamples.Length);
 
@@ -202,14 +208,7 @@ namespace HoloToolkit.Sharing.VoiceChat
 
         private void SendFixedSizedChunk(NetworkConnection connection, byte[] data, int dataSize)
         {
-            Debug.LogFormat("[MicrophoneTransmitter::SendFixedSizedChunk] Called - Data: ");
-            for (int i = 0; i < data.Length; i++)
-            {
-                if (data[i] != 0)
-                    Debug.LogFormat(data[i] + "");
-            }
-            Debug.LogFormat("\n");
-
+           
             DateTime currentTime = DateTime.Now;
             float seconds = (float)(currentTime - timeOfLastPacketSend).TotalSeconds;
             timeOfLastPacketSend = currentTime;
@@ -228,16 +227,21 @@ namespace HoloToolkit.Sharing.VoiceChat
                 }
             }
 
-            int clientId = SharingStage.Instance.Manager.GetLocalUser().GetID();
-
+            //int clientId = SharingStage.Instance.Manager.GetLocalUser().GetID();
+            //m_annotationsManager.setDebugText("SendFixedSizedChunk: called 2");
             // pack the header
-            NetworkOutMessage msg = connection.CreateMessage((byte)MessageID.AudioSamples);
+            //NetworkOutMessage msg = connection.CreateMessage((byte)MessageID.AudioSamples);
+           
 
             int dataCountFloats = dataSize / 4;
 
-            msg.Write((byte)5); // 8 byte header size
+            byte[] message = new byte[/*4 + */dataCountFloats * 4];
+            MemoryStream ms = new MemoryStream(message);
 
-            Int32 pack = 0;
+            //msg.Write((byte)5); // 8 byte header size
+
+            // Uncomment this part to add an header to the audio stream?
+            /*Int32 pack = 0;
             versionPacker.SetBits(ref pack, 1);                   // version
             audioStreamCountPacker.SetBits(ref pack, 1);          // AudioStreamCount
             channelCountPacker.SetBits(ref pack, 1);              // ChannelCount
@@ -247,59 +251,58 @@ namespace HoloToolkit.Sharing.VoiceChat
             codecTypePacker.SetBits(ref pack, 0);                 // CodecType
             mutePacker.SetBits(ref pack, Mute ? 1 : 0);
             sequenceNumberPacker.SetBits(ref pack, sequenceNumber++);
-            sequenceNumber %= 32;
+            sequenceNumber %= 32;*/
 
-            msg.Write(pack); // the packed bits
+            //msg.Write(pack); // the packed bits
+
+            // MAYBE TO ADD AGAIN
+            //ms.Write(BitConverter.GetBytes(pack), 0, 4);
 
             // This is where stream data starts. Write all data for one stream
 
-            msg.Write(0.0f);     // average amplitude.  Not needed in direction from client to server.
-            msg.Write(clientId); // non-zero client ID for this client.
-
+            //msg.Write(0.0f);     // average amplitude.  Not needed in direction from client to server.
+            //msg.Write(clientId); // non-zero client ID for this client.
+            
             // HRTF position bits
 
-            Vector3 cameraPosRelativeToGlobalAnchor = Vector3.zero;
-            Vector3 cameraDirectionRelativeToGlobalAnchor = Vector3.zero;
+            /*Vector3 cameraPosRelativeToGlobalAnchor = Vector3.zero;
+             Vector3 cameraDirectionRelativeToGlobalAnchor = Vector3.zero;
 
-            if (GlobalAnchorTransform != null)
-            {
-                cameraPosRelativeToGlobalAnchor = MathUtils.TransformPointFromTo(
-                    null,
-                    GlobalAnchorTransform,
-                    CameraCache.Main.transform.position);
+             if (GlobalAnchorTransform != null)
+             {
+                 cameraPosRelativeToGlobalAnchor = MathUtils.TransformPointFromTo(
+                     null,
+                     GlobalAnchorTransform,
+                     CameraCache.Main.transform.position);
 
-                cameraDirectionRelativeToGlobalAnchor = MathUtils.TransformDirectionFromTo(
-                    null,
-                    GlobalAnchorTransform,
-                    CameraCache.Main.transform.position);
-            }
+                 cameraDirectionRelativeToGlobalAnchor = MathUtils.TransformDirectionFromTo(
+                     null,
+                     GlobalAnchorTransform,
+                     CameraCache.Main.transform.position);
+             }
 
-            cameraPosRelativeToGlobalAnchor.Normalize();
-            cameraDirectionRelativeToGlobalAnchor.Normalize();
+             cameraPosRelativeToGlobalAnchor.Normalize();
+             cameraDirectionRelativeToGlobalAnchor.Normalize();
+             m_annotationsManager.setDebugText("SendFixedSizedChunk: called 4");
+             // Camera position
+             msg.Write(cameraPosRelativeToGlobalAnchor.x);
+             msg.Write(cameraPosRelativeToGlobalAnchor.y);
+             msg.Write(cameraPosRelativeToGlobalAnchor.z);
 
-            // Camera position
-            msg.Write(cameraPosRelativeToGlobalAnchor.x);
-            msg.Write(cameraPosRelativeToGlobalAnchor.y);
-            msg.Write(cameraPosRelativeToGlobalAnchor.z);
+             // HRTF direction bits
+             msg.Write(cameraDirectionRelativeToGlobalAnchor.x);
+             msg.Write(cameraDirectionRelativeToGlobalAnchor.y);
+             msg.Write(cameraDirectionRelativeToGlobalAnchor.z);*/
 
-            // HRTF direction bits
-            msg.Write(cameraDirectionRelativeToGlobalAnchor.x);
-            msg.Write(cameraDirectionRelativeToGlobalAnchor.y);
-            msg.Write(cameraDirectionRelativeToGlobalAnchor.z);
+            //msg.WriteArray(data, (uint)dataCountFloats * 4);
+            //ms.Write(data, 0, (int)dataCountFloats * 4);
+            //ms.Write(data, 0, 2);
 
-            msg.WriteArray(data, (uint)dataCountFloats * 4);
-
-            connection.Send(msg, MessagePriority.Immediate, MessageReliability.ReliableOrdered, MessageChannel.Audio, true);
-
-            /*Debug.LogFormat("[MicrophoneTransmitter::SendFixedSizedChunk] msg: " + msg.ToString() + "\n");
-            Debug.LogFormat("[MicrophoneTransmitter::SendFixedSizedChunk] data: ");
-            for (int i = 0; i < data.Length; i++)
-            {
-                if (data[i] != 0)
-                    Debug.LogFormat(data[i] + "");
-            }
-            Debug.LogFormat("\n");*/
-            Debug.LogFormat("[MicrophoneTransmitter::SendFixedSizedChunk] Message sent.");
+            //connection.Send(msg, MessagePriority.Immediate, MessageReliability.ReliableOrdered, MessageChannel.Audio, true);
+            //m_annotationsManager.setDebugText("SendFixedSizedChunk: Audio message sent ?!?");
+            //m_udpListener.sendUdpMessage(ms.ToString());
+            //m_annotationsManager.setDebugText(dataSize.ToString());
+            m_udpListener.sendUdpMessage(ms.ToArray());
         }
 
         private void OnDestroy()

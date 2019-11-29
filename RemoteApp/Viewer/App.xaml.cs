@@ -77,6 +77,11 @@ namespace Viewer
 
             Debug.WriteLine("[Playback::start] " + Settings.m_fullFeatures);
 
+            SpeakerController sc = new SpeakerController();
+            sc.Awake();
+            sc.Start();
+            
+
            /* if (e.Arguments.Length == 1)
             {
                 Debug.WriteLine("[Playback::start] Waiting for a connection...");

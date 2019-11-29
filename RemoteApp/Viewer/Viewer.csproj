@@ -28,6 +28,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -44,12 +45,16 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
+    <None Include="test.snk" />
     <None Include="Viewer.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Audio\AudioConstants.cs" />
+    <Compile Include="Audio\BitManipulator.cs" />
+    <Compile Include="Audio\SpeakerController.cs" />
     <Compile Include="Playback.xaml.cs">
       <DependentUpon>Playback.xaml</DependentUpon>
     </Compile>
@@ -94,6 +99,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AudioIO2">
+      <HintPath>..\..\..\..\..\..\..\..\Desktop\temp\HoloLens-Samples-master\HoloLens-Samples-master\Unity\TransparentObject\Assets\HoloToolkit\Sharing\Plugins\WSA\AudioIO2.dll</HintPath>
+    </Reference>
     <Reference Include="MixedRemoteViewCompositor, Version=255.255.255.255, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>MRCKDependencies\MixedRemoteViewCompositor.winmd</HintPath>
@@ -127,6 +135,12 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>test.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,13 +8,19 @@ using UnityEngine;
 using HoloToolkit.Unity;
 using HoloToolkit.Unity.InputModule;
 
+#if !UNITY_EDITOR
+using Windows.Networking.Sockets;
+using Windows.Networking;
+using Windows.Storage.Streams;
+#endif
+
 namespace HoloToolkit.Sharing.VoiceChat
 {
     /// <summary>
     /// Transmits data from your microphone to other clients connected to a SessionServer. Requires any receiving client to be running the MicrophoneReceiver script.
     /// </summary>
     [RequireComponent(typeof(AudioSource))]
-    public class MicrophoneTransmitter : MonoBehaviour
+    public class MicrophoneTransmitterRemoteAssistance : MonoBehaviour
     {
         /// <summary>
         /// Which type of microphone/quality to access
@@ -53,8 +59,8 @@ namespace HoloToolkit.Sharing.VoiceChat
         private bool micStarted;
 
         public const int AudioPacketSize = 960;
-        private CircularBuffer micBuffer = new CircularBuffer(AudioPacketSize * 10 * 2 * 4, true);
-        private byte[] packetSamples = new byte[AudioPacketSize * 4];
+        private CircularBuffer m_micBuffer = new CircularBuffer(AudioPacketSize * 10 * 2 * 4, true);
+        private byte[] m_packetSamples = new byte[AudioPacketSize * 4];
 
         // bit packers
         private readonly BitManipulator versionPacker = new BitManipulator(0x7, 0);           // 3 bits, 0 shift
@@ -78,7 +84,19 @@ namespace HoloToolkit.Sharing.VoiceChat
         public bool SaveTestClip;
         #endregion
 
-        private NetworkConnection GetActiveConnection()
+        public String m_sIPLocalUDP;
+        public String m_sPortLocalUDP;
+        public String m_sIPRemoteUDP;
+        public String m_sPortRemoteUDP;
+        /*public String m_sIPRemoteVideo;
+        public String m_sPortRemoteVideo;*/
+        private bool m_udpConnected;
+        #if !UNITY_EDITOR
+        private DatagramSocket m_dsUdpSocket;
+        private DataWriter m_output;
+        #endif
+
+        /*private NetworkConnection GetActiveConnection()
         {
             NetworkConnection connection = null;
             var stage = SharingStage.Instance;
@@ -93,9 +111,9 @@ namespace HoloToolkit.Sharing.VoiceChat
             }
             Debug.LogFormat("[MicrophoneTransmitter::GetActiveConnection] Active connection");
             return connection;
-        }
+        }*/
 
-        private void Awake()
+        private async void Awake()
         {
             Debug.LogFormat("[MicrophoneTransmitter::Awake] Called\n");
             audioSource = GetComponent<AudioSource>();
@@ -110,10 +128,33 @@ namespace HoloToolkit.Sharing.VoiceChat
                     micStarted = CheckForErrorOnCall(MicStream.MicStartStream(false, false));
                 }
             }
+
+            /*m_sIPLocalUDP = "10.44.160.22";
+            m_sPortLocalUDP = "62504";
+            m_sIPRemoteUDP = "10.44.161.15";
+            m_sPortRemoteUDP = "63777";*/
+            Debug.LogFormat("[MicrophoneTransmitterRemoteAssistance::Awake] Trying to connect with the following data:\n- Local IP:"+ m_sIPLocalUDP +
+                ":" + m_sPortLocalUDP + "\n- Remote IP: " + m_sIPRemoteUDP + ":" + m_sPortRemoteUDP + "\n");
+#if !UNITY_EDITOR
+                try
+                {
+                    m_dsUdpSocket = new DatagramSocket();
+                    await m_dsUdpSocket.ConnectAsync(new EndpointPair(new HostName(m_sIPLocalUDP), m_sPortLocalUDP, new HostName(m_sIPRemoteUDP), m_sPortRemoteUDP));
+                    m_output = new DataWriter(m_dsUdpSocket.OutputStream);
+                    Debug.LogFormat("[MicrophoneTransmitterRemoteAssistance::Awake] UDP connection initialization - ok\n");
+                    m_udpConnected = true;
+                }
+                catch (Exception e)
+                {
+                    Debug.LogFormat("[MicrophoneTransmitterRemoteAssistance::Awake] UDP connection initialization - error: \n" + e.ToString() + "\n" + SocketError.GetStatus(e.HResult).ToString() + "\n");
+                    m_udpConnected = false;
+                }
+#endif
         }
 
         private void OnAudioFilterRead(float[] buffer, int numChannels)
         {
+            //Debug.LogError("[MicrophoneTransmitterRemoteAssistance::OnAudioFilterRead] Called");
             try
             {
                 audioDataMutex.WaitOne();
@@ -123,16 +164,16 @@ namespace HoloToolkit.Sharing.VoiceChat
                     if (CheckForErrorOnCall(MicStream.MicGetFrame(buffer, buffer.Length, numChannels)))
                     {
                         int dataSize = buffer.Length * 4;
-                        if (micBuffer.Write(buffer, 0, dataSize) != dataSize)
+                        if (m_micBuffer.Write(buffer, 0, dataSize) != dataSize)
                         {
-                            Debug.LogError("Send buffer filled up. Some audio will be lost.");
+                            Debug.LogError("[MicrophoneTransmitterRemoteAssistance::OnAudioFilterRead] Send buffer filled up. Some audio will be lost.");
                         }
                     }
                 }
             }
             catch (Exception e)
             {
-                Debug.LogError(e.Message);
+                Debug.LogError("[MicrophoneTransmitterRemoteAssistance::OnAudioFilterRead] " + e.Message);
             }
             finally
             {
@@ -149,13 +190,16 @@ namespace HoloToolkit.Sharing.VoiceChat
             {
                 audioDataMutex.WaitOne();
 
-                var connection = GetActiveConnection();
-                hasServerConnection = (connection != null);
+                //var connection = GetActiveConnection();
+                //hasServerConnection = (connection != null);
+                hasServerConnection = m_udpConnected;
                 if (hasServerConnection)
                 {
-                    while (micBuffer.UsedCapacity >= 4 * AudioPacketSize)
+                    Debug.LogError("[MicrophoneTransmitter::Update] Before transmitting the audio:\n- hasServerConnection: " + hasServerConnection + "\n" + "- micBuffer.UsedCapacity: " + m_micBuffer.UsedCapacity + "\n");
+                    while (m_micBuffer.UsedCapacity >= 4 * AudioPacketSize)
                     {
-                        TransmitAudio(connection);
+                        //TransmitAudio(connection);
+                        TransmitAudio(null);
                     }
                 }
             }
@@ -168,7 +212,7 @@ namespace HoloToolkit.Sharing.VoiceChat
                 audioDataMutex.ReleaseMutex();
             }
 
-            #region DebugInfo
+#region DebugInfo
             if (SaveTestClip && testCircularBuffer.UsedCapacity == testCircularBuffer.TotalCapacity)
             {
                 float[] testBuffer = new float[testCircularBuffer.UsedCapacity / 4];
@@ -185,30 +229,39 @@ namespace HoloToolkit.Sharing.VoiceChat
                 testSource.PlayClip(TestClip);
                 SaveTestClip = false;
             }
-            #endregion
+#endregion
         }
 
         private void TransmitAudio(NetworkConnection connection)
         {
-            Debug.LogFormat("[MicrophoneTransmitter::TransmitAudio] Called");
-            micBuffer.Read(packetSamples, 0, 4 * AudioPacketSize);
-            SendFixedSizedChunk(connection, packetSamples, packetSamples.Length);
+            //Debug.LogFormat("[MicrophoneTransmitter::TransmitAudio] Called");
+            m_packetSamples = new byte[AudioPacketSize * 4];
+            m_micBuffer.Read(m_packetSamples, 0, 4 * AudioPacketSize);
+            //SendFixedSizedChunk(connection, packetSamples, packetSamples.Length);
+            sendUdpMessage(m_packetSamples);
 
             if (SaveTestClip)
             {
-                testCircularBuffer.Write(packetSamples, 0, packetSamples.Length);
+                testCircularBuffer.Write(m_packetSamples, 0, m_packetSamples.Length);
             }
         }
 
         private void SendFixedSizedChunk(NetworkConnection connection, byte[] data, int dataSize)
         {
-            Debug.LogFormat("[MicrophoneTransmitter::SendFixedSizedChunk] Called - Data: ");
+            /*String temp = "";
             for (int i = 0; i < data.Length; i++)
             {
                 if (data[i] != 0)
-                    Debug.LogFormat(data[i] + "");
+                {
+                    //Debug.LogFormat(data[i] + "");
+                    temp += data[i] + "";
+                }
+
             }
-            Debug.LogFormat("\n");
+            if ( temp != "")
+            {
+                Debug.LogFormat("[MicrophoneTransmitter::SendFixedSizedChunk] Called - Data are not empty!!! : " + temp + "\n");
+            }*/
 
             DateTime currentTime = DateTime.Now;
             float seconds = (float)(currentTime - timeOfLastPacketSend).TotalSeconds;
@@ -288,7 +341,7 @@ namespace HoloToolkit.Sharing.VoiceChat
             msg.Write(cameraDirectionRelativeToGlobalAnchor.z);
 
             msg.WriteArray(data, (uint)dataCountFloats * 4);
-
+            
             connection.Send(msg, MessagePriority.Immediate, MessageReliability.ReliableOrdered, MessageChannel.Audio, true);
 
             /*Debug.LogFormat("[MicrophoneTransmitter::SendFixedSizedChunk] msg: " + msg.ToString() + "\n");
@@ -299,7 +352,38 @@ namespace HoloToolkit.Sharing.VoiceChat
                     Debug.LogFormat(data[i] + "");
             }
             Debug.LogFormat("\n");*/
-            Debug.LogFormat("[MicrophoneTransmitter::SendFixedSizedChunk] Message sent.");
+            //Debug.LogFormat("[MicrophoneTransmitter::SendFixedSizedChunk] Message sent.");
+        }
+
+        public async void sendUdpMessage(byte[] message)
+        {
+#if !UNITY_EDITOR
+        m_output.WriteBytes(message);
+       
+        try
+        {
+            await m_output.StoreAsync();
+            //m_sStatus = "Message sent: " + message;
+            String temp = "";
+            for (int i = 0; i < message.Length; i++)
+            {
+                if (message[i] != 0)
+                {
+                    //Debug.LogFormat(message[i] + "");
+                    temp += message[i] + "";
+                }
+
+            }
+            if ( temp != "")
+            {
+                Debug.LogFormat("[MicrophoneTransmitter::sendUdpMessage] Called - Data are not empty!!! : " + temp + "\n");
+            }
+        }
+        catch (Exception exception)
+        {
+            Debug.LogFormat("[MicrophoneTransmitterRemoteAssistance::sendUdpMessage] Send failed with error: " + exception.Message);
+        }
+#endif
         }
 
         private void OnDestroy()
