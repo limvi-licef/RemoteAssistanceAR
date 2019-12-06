@@ -77,9 +77,9 @@ namespace Viewer
 
             Debug.WriteLine("[Playback::start] " + Settings.m_fullFeatures);
 
-            SpeakerController sc = new SpeakerController();
+            /*SpeakerController sc = new SpeakerController();
             sc.Awake();
-            sc.Start();
+            sc.Start();*/
             
 
            /* if (e.Arguments.Length == 1)
