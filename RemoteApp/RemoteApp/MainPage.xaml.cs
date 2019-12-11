@@ -1,23 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
 using Microsoft.MixedReality.WebRTC;
 using System.Diagnostics;
 using Windows.Media.Capture;
 using Windows.ApplicationModel;
-using System.Collections.Generic;
 using TestAppUwp.Video;
 using TestAppUwp;
 using Windows.Media.Core;
@@ -57,20 +49,13 @@ namespace RemoteApp
         enum DEBUG { DEBUG_NO = 0, DEBUG_TEXT = 1, DEBUG_VISUAL = 2, DEBUG_TEXTANDVISUAL = 3 };
 
         private DataWriter m_output;
-        public String m_sIPLocalUDP;
-        public String m_sPortLocalUDP;
-        public String m_sIPRemoteUDP;
-        public String m_sPortRemoteUDP;
-        //public String m_sIPRemoteVideo;
-        //public String m_sPortRemoteVideo;
-
+        
         private int m_iButtonNoEntryStatus;
         private int m_iButtonArrowStatus;
         private int m_iButtonArrowGuidanceStatus;
         private int m_iDebugStatus;
         private bool m_bIsConnected;
         private DatagramSocket m_dsUdpSocket;
-
 
         public MainPage()
         {
@@ -101,8 +86,6 @@ namespace RemoteApp
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            //remoteVideoPlayerElement.Visibility = Visibility.Collapsed;
-
             // Request access to microphone and camera
             var settings = new MediaCaptureInitializationSettings();
             settings.StreamingCaptureMode = StreamingCaptureMode.AudioAndVideo;
@@ -131,15 +114,6 @@ namespace RemoteApp
             };
             await _peerConnection.InitializeAsync(config);
             Debugger.Log(0, "", "Peer connection initialized successfully.\n");
-            /*try
-            {
-                await _peerConnection.InitializeAsync(new PeerConnectionConfiguration());
-                Debugger.Log(0, "", "Peer connection initialized successfully.\n");
-            }
-            catch(Exception s)
-            {
-                Debugger.Log(0, "", s.ToString());
-            }*/
 
             await _peerConnection.AddLocalAudioTrackAsync();
 
@@ -204,8 +178,6 @@ namespace RemoteApp
                 };
 
                 _signaler.StartPollingAsync();
-
-                //_peerConnection.CreateOffer();
             }
 
             // Interactions
@@ -217,11 +189,7 @@ namespace RemoteApp
             // Initialization UDP communication
             try
             {
-                m_sIPLocalUDP = "10.44.160.22";
-                m_sPortLocalUDP = "62503";
-                m_sIPRemoteUDP = "10.44.161.15";
-                m_sPortRemoteUDP = "63777";
-                await m_dsUdpSocket.ConnectAsync(new EndpointPair(new HostName(m_sIPLocalUDP), m_sPortLocalUDP, new HostName(m_sIPRemoteUDP), m_sPortRemoteUDP));
+                await m_dsUdpSocket.ConnectAsync(new EndpointPair(new HostName(Settings.m_sIPLocalUDP), Settings.m_sPortLocalUDP, new HostName(Settings.m_sIPRemoteUDP), Settings.m_sPortRemoteUDP));
                 m_output = new DataWriter(m_dsUdpSocket.OutputStream);
                 Debug.WriteLine("[Playback::start] UDP connection initialization ok");
             }
@@ -229,12 +197,6 @@ namespace RemoteApp
             {
                 Debug.WriteLine("[Playback::start] Error - UDP connection initialization ");
             }
-
-            // Initialization video communication
-            /*m_sIPRemoteVideo = m_sIPRemoteUDP;
-            m_sPortRemoteVideo = "27772";*/
-            //videoPlayer.Visibility = Visibility.Collapsed;
-            
         }
 
 
@@ -587,15 +549,6 @@ MediaStreamSourceSampleRequestedEventArgs args)
         {
             if (Settings.m_fullFeatures == false)
             {
-                //bnArrowGuidance.Opacity = 0;
-                //bnArrowGuidance.IsHitTestVisible = false;
-                //bnArrowGuidance.Focus(FocusState.Unfocused);
-                //tbMessage.Opacity = 0;
-                //tbMessage.IsHitTestVisible = false;
-
-                //bnSendMessage.Opacity = 0;
-                //bnSendMessage.IsHitTestVisible = false;
-
                 bnDebug.Opacity = 0;
                 bnDebug.IsHitTestVisible = false;
             }
@@ -664,21 +617,6 @@ MediaStreamSourceSampleRequestedEventArgs args)
 
             b.Background = ib;
         }
-
-        /*private void bnClose_Click(object sender, RoutedEventArgs e)
-        {
-            CloseConnection();
-        }*/
-
-        /*private void bnStart_Click(object sender, RoutedEventArgs e)
-        {
-            StartPlayback(this.txAddress.Text, this.txPort.Text);
-        }
-
-        private void bnStop_Click(object sender, RoutedEventArgs e)
-        {
-            StopPlayback();
-        }*/
 
         private async void bnArrowGuidance_Click(object sender, RoutedEventArgs e)
         {
@@ -831,11 +769,7 @@ MediaStreamSourceSampleRequestedEventArgs args)
                 Debug.WriteLine("[Playback::sendUdpMessage] Trying to reconnect");
                 try
                 {
-                    m_sIPLocalUDP = "192.168.137.1";
-                    m_sPortLocalUDP = "62503";
-                    m_sIPRemoteUDP = "192.168.137.161";
-                    m_sPortRemoteUDP = "63777";
-                    await m_dsUdpSocket.ConnectAsync(new EndpointPair(new HostName(m_sIPLocalUDP), m_sPortLocalUDP, new HostName(m_sIPRemoteUDP), m_sPortRemoteUDP));
+                    await m_dsUdpSocket.ConnectAsync(new EndpointPair(new HostName(Settings.m_sIPLocalUDP), Settings.m_sPortLocalUDP, new HostName(Settings.m_sIPRemoteUDP), Settings.m_sPortRemoteUDP));
                     m_output = new DataWriter(m_dsUdpSocket.OutputStream);
                     Debug.WriteLine("[Playback::start] UDP connection initialization ok");
                 }
@@ -862,29 +796,7 @@ MediaStreamSourceSampleRequestedEventArgs args)
                 Logger.m_logger.addLog("Message received - " + message);
             });
 
-            if (message == "CALL start")
-            {
-                if (m_bIsConnected == false)
-                {
-                    //ushort usPortRemotVideo;
-                    //ushort.TryParse(m_sPortRemoteVideo, out usPortRemotVideo);
-                    // TODO see if something has to be implemented here to hide / show the video stream
-                    /*bool statusConnection = await connect(m_sIPRemoteVideo, usPortRemotVideo);
-                    if (statusConnection)
-                    {
-                        await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                        {
-                            StartPlayback(m_sIPRemoteVideo, m_sPortRemoteVideo);
-                        });
-                        await videoPlayer.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                        {
-                            videoPlayer.Visibility = Visibility.Visible;
-                        });
-                        m_bIsConnected = true;
-                    }*/
-                }
-            }
-            else if (message == "WARNING noHits")
+            if (message == "WARNING noHits")
             {
                 await txNoHitsInfo.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
@@ -911,47 +823,6 @@ MediaStreamSourceSampleRequestedEventArgs args)
         //////////////////////////////////////////////////
         // Others
         //////////////////////////////////////////////////
-
-        /*private void Connection_Disconnected(Connection sender)
-        {
-            CloseConnection();
-        }
-
-        private async void CloseConnection()
-        {
-            StopPlayback();
-
-            if (this.connection != null)
-            {
-                this.connection.Disconnected -= Connection_Disconnected;
-                this.connection.Uninitialize();
-                this.connection = null;
-            }
-
-            if (this.connector != null)
-            {
-                this.connector.Uninitialize();
-                this.connector = null;
-            }
-
-            await videoPlayer.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                videoPlayer.Visibility = Visibility.Collapsed;
-            });
-
-            m_bIsConnected = false;
-        }
-
-        public void RegisterSchemeHandler(PropertySet propertySet)
-        {
-            if (this.mediaExtensionManager == null)
-            {
-                this.mediaExtensionManager = new MediaExtensionManager();
-            }
-
-            this.mediaExtensionManager.RegisterSchemeHandler("MixedRemoteViewCompositor.Media.MrvcSchemeHandler", "mrvc:", propertySet);
-        }*/
-
         double[] getNormalizedCoodinates(double x, double y)
         {
             double[] toReturn = new double[2];
@@ -959,15 +830,6 @@ MediaStreamSourceSampleRequestedEventArgs args)
             toReturn[0] = x / 1280.0;
             toReturn[1] = Math.Abs(((y - 90) / (810 - 90)) - 1);
 
-            /*double fovScalingFactor = 0.1;
-            toReturn[0] = toReturn[0] * (1 - 2 * fovScalingFactor) + fovScalingFactor;
-            toReturn[1] = toReturn[1] * (1 - 2 * fovScalingFactor) + fovScalingFactor;*/
-            /*double fovScalingFactor = 0.14;
-            toReturn[0] = toReturn[0] * (1 - 2 * fovScalingFactor) + fovScalingFactor;
-            toReturn[1] = toReturn[1] * (1 - fovScalingFactor);*/
-            /*double fovScalingFactor = 4;
-            toReturn[0] = toReturn[0] - (0.5 - (1 - toReturn[0])) / fovScalingFactor;
-            toReturn[1] = toReturn[1] - (0.5 - (1 - toReturn[1])) / fovScalingFactor;*/
             double scalingFactorX = 5;
             double scalingFactorY = 5;
             double convergenceX = 0.65;
