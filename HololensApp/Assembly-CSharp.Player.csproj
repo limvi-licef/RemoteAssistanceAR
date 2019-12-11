@@ -898,19 +898,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\Interop\CaptureEngine.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\Interop\Connection.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\Interop\Connector.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\Interop\Listener.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\Interop\NetworkComponent.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\Interop\PlaybackEngine.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\Interop\Plugin.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\MrvcCapture.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\MrvcManager.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\MrvcPlayer.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\SpatialTranformHelper.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\StateChangedEventArgs.cs" />
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\VideoCompositor.cs" />
     <Compile Include="Assets\HoloToolkit\Boundary\Scripts\BoundaryManager.cs" />
     <Compile Include="Assets\HoloToolkit\Boundary\Scripts\Edge.cs" />
     <Compile Include="Assets\HoloToolkit\Boundary\Scripts\EdgeHelpers.cs" />
@@ -1678,11 +1665,10 @@
     <Compile Include="Assets\HoloToolkit-Preview\SpectatorView\UnityARKitPlugin\Plugins\iOS\UnityARKit\NativeInterface\ARTrackingStateReason.cs" />
     <Compile Include="Assets\HoloToolkit-Preview\SpectatorView\UnityARKitPlugin\Plugins\iOS\UnityARKit\NativeInterface\ARUserAnchor.cs" />
     <Compile Include="Assets\HoloToolkit-Preview\SpectatorView\UnityARKitPlugin\Plugins\iOS\UnityARKit\NativeInterface\UnityARSessionNativeInterface.cs" />
-    <Compile Include="Assets\Scripts\AnnotationsManager.cs" />
+    <Compile Include="Assets\RemoteAssistanceARScripts\AnnotationsManager.cs" />
+    <Compile Include="Assets\RemoteAssistanceARScripts\UDPListener.cs" />
     <Compile Include="Assets\Scripts\CursorManager.cs" />
     <Compile Include="Assets\Scripts\RaycastController.cs" />
-    <Compile Include="Assets\Scripts\Receiver.cs" />
-    <Compile Include="Assets\Scripts\UDPListener.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
