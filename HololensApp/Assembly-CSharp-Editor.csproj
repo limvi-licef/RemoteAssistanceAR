@@ -60,7 +60,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AddOns\MixedRemoteViewCompositor\Scripts\Editor\MrvcManagerInspector.cs" />
     <Compile Include="Assets\HoloToolkit\BuildAndDeploy\Editor\BuildDeployPortal.cs" />
     <Compile Include="Assets\HoloToolkit\BuildAndDeploy\Editor\BuildDeployPrefs.cs" />
     <Compile Include="Assets\HoloToolkit\BuildAndDeploy\Editor\BuildDeployTools.cs" />
