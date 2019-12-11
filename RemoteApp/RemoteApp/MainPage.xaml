@@ -32,6 +32,7 @@
                             <ResourceDictionary.ThemeDictionaries>
                                 <ResourceDictionary x:Key="Light">
                                     <ImageBrush x:Key="ButtonBackgroundPointerOver" ImageSource="ms-appx:///Assets/target_Unselected.png"/>
+                                    <ImageBrush x:Key="ButtonBackgroundPressed" ImageSource="ms-appx:///Assets/target_Unselected.png"/>
                                 </ResourceDictionary>
                             </ResourceDictionary.ThemeDictionaries>
                         </ResourceDictionary>
@@ -46,6 +47,7 @@
                             <ResourceDictionary.ThemeDictionaries>
                                 <ResourceDictionary x:Key="Light">
                                     <ImageBrush x:Key="ButtonBackgroundPointerOver" ImageSource="ms-appx:///Assets/noEntry_Unselected.png"/>
+                                    <ImageBrush x:Key="ButtonBackgroundPressed" ImageSource="ms-appx:///Assets/noEntry_Unselected.png"/>
                                 </ResourceDictionary>
                             </ResourceDictionary.ThemeDictionaries>
                         </ResourceDictionary>
@@ -60,6 +62,7 @@
                             <ResourceDictionary.ThemeDictionaries>
                                 <ResourceDictionary x:Key="Light">
                                     <ImageBrush x:Key="ButtonBackgroundPointerOver" ImageSource="ms-appx:///Assets/arrowGuide_Unselected.png"/>
+                                    <ImageBrush x:Key="ButtonBackgroundPressed" ImageSource="ms-appx:///Assets/arrowGuide_Unselected.png"/>
                                 </ResourceDictionary>
                             </ResourceDictionary.ThemeDictionaries>
                         </ResourceDictionary>
@@ -82,6 +85,7 @@
                             <ResourceDictionary.ThemeDictionaries>
                                 <ResourceDictionary x:Key="Light">
                                     <ImageBrush x:Key="ButtonBackgroundPointerOver" ImageSource="ms-appx:///Assets/debugInfo_Unselected.png"/>
+                                    <ImageBrush x:Key="ButtonBackgroundPressed" ImageSource="ms-appx:///Assets/debugInfo_Unselected.png"/>
                                 </ResourceDictionary>
                             </ResourceDictionary.ThemeDictionaries>
                         </ResourceDictionary>
