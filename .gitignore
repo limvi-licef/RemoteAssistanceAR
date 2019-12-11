@@ -56,3 +56,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+RemoteApp/RemoteApp/bin/
+RemoteApp/RemoteApp/obj/

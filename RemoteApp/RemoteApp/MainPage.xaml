@@ -1,0 +1,99 @@
+﻿<Page
+    x:Class="RemoteApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RemoteApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Left" Width="1280">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Margin="10,10,10,0" Grid.Row="0" VerticalAlignment="Top" Height="70" Width="Auto">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="bnConnect" Content="Connect To" Margin="0,0,5,0" Visibility="Collapsed"/>
+                    <Button x:Name="bnClose" Content="Close" Margin="0,0,5,0" Visibility="Collapsed"/>
+                    <TextBox x:Name="txAddress" PlaceholderText="localhost" Width="200" Margin="0,0,5,0" Visibility="Collapsed" />
+                    <TextBox x:Name="txPort" Text="27772" InputScope="Number" MaxLength="5" Margin="0,0,5,0" Visibility="Collapsed" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Left" Width="1250" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    <Button x:Name="bnStart" Content="Start MRC Playback" Margin="0,0,5,0" IsEnabled="False" Visibility="Collapsed" />
+                    <Button x:Name="bnStop" Content="Stop" Margin="0,0,5,0" IsEnabled="False" Visibility="Collapsed" />
+                <Button x:Name="bnArrow" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="50" Margin="0,0,20,0" BorderBrush="Black" Click="bnArrow_Click" Height="50" FocusVisualPrimaryBrush="Black" FocusVisualSecondaryBrush="#99FFFFFF">
+                    <Button.Background>
+                        <ImageBrush ImageSource="ms-appx:///Assets/target_Selected.png"/>
+                    </Button.Background>
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Light">
+                                    <ImageBrush x:Key="ButtonBackgroundPointerOver" ImageSource="ms-appx:///Assets/target_Unselected.png"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                </Button>
+                    <Button x:Name="bnNoEntry" Content="" HorizontalAlignment="Stretch"  Margin="0,0,20,0" VerticalAlignment="Stretch" Width="50" BorderBrush="Black" Click="bnNoEntry_Click">
+                        <Button.Background>
+                            <ImageBrush Stretch="Fill" ImageSource="Assets/noEntry_Unselected.png"/>
+                        </Button.Background>
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Light">
+                                    <ImageBrush x:Key="ButtonBackgroundPointerOver" ImageSource="ms-appx:///Assets/noEntry_Unselected.png"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                </Button>
+                    <Button x:Name="bnArrowGuidance" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="50" BorderBrush="Black" Click="bnArrowGuidance_Click" Margin="0,0,20,0">
+                        <Button.Background>
+                            <ImageBrush Stretch="Fill" ImageSource="Assets/arrowGuide_Unselected.png"/>
+                        </Button.Background>
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Light">
+                                    <ImageBrush x:Key="ButtonBackgroundPointerOver" ImageSource="ms-appx:///Assets/arrowGuide_Unselected.png"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                </Button>
+                    
+                    <TextBox x:Name="tbMessage" TextWrapping="Wrap" Text="Write the message to send here" Margin="0,0,20,0" Width="296"/>
+                    <Button x:Name="bnSendMessage" Content="Send" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,50,0" Width="58" Click="bnSendMessage_Click"/>
+                
+                <TextBlock x:Name="txNoHitsInfo" TextWrapping="Wrap" Text="Cannot add an annotation here" Padding="0,0,200,0" HorizontalAlignment="Left" TextAlignment="Center" LineHeight="12" FontSize="20" Width="500"/>
+                <Button x:Name="bnCreateOffer" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Click="BnCreateOffer_Click">
+                    <TextBlock>Create<LineBreak/>offer</TextBlock>
+                </Button>
+                <Button x:Name="bnDebug" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="50" Click="bnDebug_Click">
+                        <Button.Background>
+                            <ImageBrush Stretch="Fill" ImageSource="Assets/debugInfo_Unselected.png"/>
+                        </Button.Background>
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Light">
+                                    <ImageBrush x:Key="ButtonBackgroundPointerOver" ImageSource="ms-appx:///Assets/debugInfo_Unselected.png"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                    </Button>
+                
+            </StackPanel>
+            </StackPanel>
+        <MediaPlayerElement x:Name="remoteVideoPlayerElement" Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+
+        <!--<MediaPlayerElement x:Name="remoteVideoPlayerElement" />-->
+        <!--<MediaPlayerElement x:Name="localVideoPlayerElement" Width="320" Height="240"
+    HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" />-->
+    </Grid>
+</Page>
