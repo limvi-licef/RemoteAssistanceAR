@@ -40,7 +40,7 @@ The first time the application runs, you have to allow access to the microphone 
 	- Target device: Hololens
 	- Architecture: x86
 - Click Switch Platform.
-- Click Build and Run.
+- Click Build.
 - If necessary, create an output directory.
 - Once the compilation is done, open the build directory and then HololensApp.sln using Visual Studio 2017.
 - Select Release and x86 as Target.
