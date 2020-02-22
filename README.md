@@ -55,7 +55,7 @@ On the Hololens, go to the All Apps menu
 - In the 2 applications, the IP is hard-coded, which means you have to configure them manually to ensure they are valid in the network you are. To change them, proceed as follow:
 - In the Windows app: In Settings.cs > m_sIPLocalUDP: set the IP of the Windows computer; m_sIPRemoteUDP: set the IP of the Hololens.
 - In the Hololens app: Open UDPListener > SIP Local: set the IP of the Hololens; SIP Remote > set the IP of the Windows app.
-- Start node-dss. Instructions available here: https://github.com/bengreenier/node-dss
+- Start node-dss. Instructions available here: https://github.com/bengreenier/node-dss. If there is no communication within the network, maybe check that the windows firewall allows traffic for the port used by node-dss (3000 by default). If not, add a rule in the firewall for that.
 - Start the Windows app.
 - Start the Hololens app.
  In the Windows app, you have a "Call" button on the top right. Click on this button to initiate the connection.
