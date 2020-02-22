@@ -47,7 +47,7 @@ The first time the application runs, you have to allow access to the microphone 
 - Select Release and x86 as Target.
 
 ### Run
-On the Hololens, go to the All Apps menu
+On the Hololens, go to the All Apps menu, and then open the HololensApp.
 
 ## How to use it?
 
