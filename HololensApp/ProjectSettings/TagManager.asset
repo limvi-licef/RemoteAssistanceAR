@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Tip
   - Annotations
   layers:
   - Default
@@ -15,7 +14,6 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
   - 
   - 
   - 
@@ -38,7 +36,8 @@ TagManager:
   - 
   - 
   - 
-  - Spatial Mapping
+  - 
+  - Spatial Awareness
   m_SortingLayers:
   - name: Default
     uniqueID: 0
