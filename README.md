@@ -24,7 +24,8 @@ The following sections detail how to compile and run those applications. The fin
 Visual Studio 2017 with UWP support
 
 ### Compilation
-Compile in Release x86.
+- Rename the file "Settings_templace.cs" by "Settings.cs"
+- Compile in Release x86.
 
 ### Run
 The first time the application runs, you have to allow access to the microphone and the webcam, although the webcam won't be used (that was for testing purposes).

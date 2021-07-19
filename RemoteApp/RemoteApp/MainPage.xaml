@@ -74,7 +74,7 @@
                 
                 <TextBlock x:Name="txNoHitsInfo" TextWrapping="Wrap" Text="Cannot add an annotation here" Padding="0,0,200,0" HorizontalAlignment="Left" TextAlignment="Center" LineHeight="12" FontSize="20" Width="500"/>
                 <Button x:Name="bnCreateOffer" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Click="BnCreateOffer_Click">
-                    <TextBlock>Create<LineBreak/>offer</TextBlock>
+                    <TextBlock Text="Call"/>
                 </Button>
                 <Button x:Name="bnDebug" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="50" Click="bnDebug_Click">
                         <Button.Background>
