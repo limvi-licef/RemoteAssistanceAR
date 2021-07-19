@@ -147,10 +147,13 @@ namespace RemoteApp
                 // Initialize the signaler
                 _signaler = new NodeDssSignaler()
                 {
-                    HttpServerAddress = "http://10.44.160.22:3000/",
+                    /*HttpServerAddress = "http://10.44.160.22:3000/",
                     LocalPeerId = "DINF-D60015-43A",
-                    RemotePeerId = "HOLOLENS-RO2J0",
-                };
+                    RemotePeerId = "HOLOLENS-RO2J0",*/
+                    HttpServerAddress = "http://" + Settings.m_sIPLocalUDP + ":3000/",
+                    LocalPeerId = Settings.m_sLocalPeerId,// "DINF-D60015-43A",
+                    RemotePeerId = Settings.m_sRemotePeerId, // "HOLOLENS-RO2J0",
+            };
                 _signaler.OnMessage += (NodeDssSignaler.Message msg) =>
                 {
                     switch (msg.MessageType)
@@ -264,6 +267,7 @@ MediaStreamSourceSampleRequestedEventArgs args)
 
        private void Peer_LocalI420AFrameReady(I420AVideoFrame frame)
         {
+
             lock(_localVideoLock)
             {
                 if (!_localVideoPlaying)
