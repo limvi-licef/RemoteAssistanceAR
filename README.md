@@ -32,20 +32,20 @@ The first time the application runs, you have to allow access to the microphone 
 
 ## HololensApp
 ### Software requirements
-- Unity 2018.3.xx with UWP support.
-- Visual Studio 2017 with UWP C++ support
+- Unity 2019.4.3 with UWP support.
+- Visual Studio 2019 with UWP C++ support
 
 ### Compilation
 - Open Assets > Scenes > SampleScene
 - In File > Build Settings : select Universal Windows Platform in the left column.
 - Select the following parameters in the right column:
 	- Target device: Hololens
-	- Architecture: x86
+	- Architecture: ARM
 - Click Switch Platform.
 - Click Build.
 - If necessary, create an output directory.
-- Once the compilation is done, open the build directory and then HololensApp.sln using Visual Studio 2017.
-- Select Release and x86 as Target.
+- Once the compilation is done, open the build directory and then HololensApp.sln using Visual Studio 2019.
+- Select Release and ARM as Target.
 
 ### Run
 On the Hololens, go to the All Apps menu, and then open the HololensApp.
