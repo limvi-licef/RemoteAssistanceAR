@@ -591,11 +591,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: RemoteAssistARHololens2
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: Assets\WSATestCertificate.pfx
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
-  metroCertificateNotAfter: 00ec38af8374d701
+  metroCertificateNotAfter: 00c01e05779dd801
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: 
